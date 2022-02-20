@@ -67,6 +67,14 @@ public class PlayerData {
 		this.deaths = deaths;
 	}
 
+	public double getMoney() {
+		return money;
+	}
+
+	public void setMoney(double money) {
+		this.money = money;
+	}
+
 	public OfflinePlayer getPlayerOffline() {
 		return Bukkit.getOfflinePlayer(this.getUuid());
 	}
@@ -80,12 +88,12 @@ public class PlayerData {
 		if (this == o) return true;
 		if (!(o instanceof PlayerData)) return false;
 		PlayerData that = (PlayerData) o;
-		return kills == that.kills && deaths == that.deaths && id.equals(that.id);
+		return kills == that.kills && deaths == that.deaths && Double.compare(that.money, money) == 0 && id.equals(that.id);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, kills, deaths);
+		return Objects.hash(id, kills, deaths, money);
 	}
 
 	@Override
@@ -94,14 +102,7 @@ public class PlayerData {
 				"id='" + id + '\'' +
 				", kills=" + kills +
 				", deaths=" + deaths +
+				", money=" + money +
 				'}';
-	}
-
-	public double getMoney() {
-		return money;
-	}
-
-	public void setMoney(double money) {
-		this.money = money;
 	}
 }
