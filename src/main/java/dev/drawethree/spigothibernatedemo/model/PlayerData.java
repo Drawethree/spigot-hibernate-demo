@@ -25,10 +25,14 @@ public class PlayerData {
 	@Column(name = "deaths")
 	private int deaths;
 
-	public PlayerData(String id, int kills, int deaths) {
+	@Column(name = "money")
+	private double money;
+
+	public PlayerData(String id, int kills, int deaths, double money) {
 		this.id = id;
 		this.kills = kills;
 		this.deaths = deaths;
+		this.money = money;
 	}
 
 	public PlayerData() {
@@ -91,5 +95,13 @@ public class PlayerData {
 				", kills=" + kills +
 				", deaths=" + deaths +
 				'}';
+	}
+
+	public double getMoney() {
+		return money;
+	}
+
+	public void setMoney(double money) {
+		this.money = money;
 	}
 }

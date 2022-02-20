@@ -14,7 +14,7 @@ public class PlayerDataController {
 	}
 
 	public PlayerData createNewPlayerData(Player player) {
-		PlayerData playerData = new PlayerData(player.getUniqueId().toString(), 0, 0);
+		PlayerData playerData = new PlayerData(player.getUniqueId().toString(), 0, 0, 0.0);
 
 		Session session = this.plugin.getSessionFactory().getCurrentSession();
 

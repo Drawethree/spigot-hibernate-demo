@@ -21,8 +21,14 @@
         <!-- Echo the SQL to stdout -->
         <property name="show_sql">false</property>
 
+        <!-- Format the SQL -->
+        <property name="format_sql">false</property>
+
         <!-- Set the current session context -->
         <property name="current_session_context_class">thread</property>
+
+        <!-- Handles the entity table changes -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
 
     </session-factory>
 
