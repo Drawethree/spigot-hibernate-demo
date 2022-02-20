@@ -1,0 +1,7 @@
+name: SpigotHibernateDemo
+version: '${project.version}'
+main: dev.drawethree.spigothibernatedemo.SpigotHibernateDemo
+api-version: 1.13
+authors: [ Drawethree ]
+description: Demo spigot plugin with Hibernate integration
+website: www.drawethree.dev
