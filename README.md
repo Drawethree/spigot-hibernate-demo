@@ -13,5 +13,9 @@ Database (You can use any database supported by Hibernate, this project is set u
 
 Spigot server running on Java 8 / Java 11 / Java 17.
 
+If you are new to Hibernate and ORM overall, feel free to check these sites:
+Hibernate Documentation:https://hibernate.org/orm/documentation/5.6/
+ORM in Java: https://www.javatpoint.com/jpa-object-relational-mapping
+
 
 
