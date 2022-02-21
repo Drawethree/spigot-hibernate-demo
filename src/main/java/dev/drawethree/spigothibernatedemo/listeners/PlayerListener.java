@@ -1,6 +1,6 @@
 package dev.drawethree.spigothibernatedemo.listeners;
 
-import dev.drawethree.spigothibernatedemo.SpigotHibernateDemo;
+import dev.drawethree.spigothibernatedemo.controller.PlayerDataController;
 import dev.drawethree.spigothibernatedemo.model.PlayerData;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -9,29 +9,29 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 public class PlayerListener implements Listener {
 
-	private final SpigotHibernateDemo plugin;
+	private final PlayerDataController controller;
 
-	public PlayerListener(SpigotHibernateDemo plugin) {
-		this.plugin = plugin;
+	public PlayerListener(PlayerDataController controller) {
+		this.controller = controller;
 	}
 
 	@EventHandler
 	public void onJoin(PlayerJoinEvent event) {
-		PlayerData data = this.plugin.getPlayerDataController().getPlayerData(event.getPlayer());
+		PlayerData data = this.controller.getPlayerData(event.getPlayer());
 		if (data == null) {
-			this.plugin.getPlayerDataController().createNewPlayerData(event.getPlayer());
+			this.controller.createNewPlayerData(event.getPlayer());
 		}
 	}
 
 	@EventHandler
 	public void onDeath(PlayerDeathEvent event) {
-		PlayerData playerData = this.plugin.getPlayerDataController().getPlayerData(event.getEntity());
+		PlayerData playerData = this.controller.getPlayerData(event.getEntity());
 		playerData.setDeaths(playerData.getDeaths() + 1);
-		this.plugin.getPlayerDataController().updatePlayerData(playerData);
+		this.controller.updatePlayerData(playerData);
 		if (event.getEntity().getKiller() != null) {
-			PlayerData killerData = this.plugin.getPlayerDataController().getPlayerData(event.getEntity().getKiller());
+			PlayerData killerData = this.controller.getPlayerData(event.getEntity().getKiller());
 			killerData.setKills(killerData.getKills() + 1);
-			this.plugin.getPlayerDataController().updatePlayerData(killerData);
+			this.controller.updatePlayerData(killerData);
 		}
 	}
 }

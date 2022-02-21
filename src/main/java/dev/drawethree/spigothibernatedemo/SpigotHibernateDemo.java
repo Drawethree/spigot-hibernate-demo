@@ -9,7 +9,7 @@ import org.hibernate.cfg.Configuration;
 
 import java.io.File;
 
-public class SpigotHibernateDemo extends JavaPlugin {
+public final class SpigotHibernateDemo extends JavaPlugin {
 
 	private static final String HIBERNATE_CONFIG_FILE_NAME = "hibernate.cfg.xml";
 
@@ -18,14 +18,16 @@ public class SpigotHibernateDemo extends JavaPlugin {
 
 	@Override
 	public void onEnable() {
+
 		this.saveResource(HIBERNATE_CONFIG_FILE_NAME, false);
 		this.sessionFactory = new Configuration()
 				.configure(new File(this.getDataFolder().getAbsolutePath() + "/" + HIBERNATE_CONFIG_FILE_NAME))
 				.addAnnotatedClass(PlayerData.class)
 				.buildSessionFactory();
-		this.playerDataController = new PlayerDataController(this);
 
-		this.getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
+		this.playerDataController = new PlayerDataController(this.sessionFactory);
+
+		this.getServer().getPluginManager().registerEvents(new PlayerListener(this.playerDataController), this);
 	}
 
 	@Override

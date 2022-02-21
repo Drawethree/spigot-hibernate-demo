@@ -1,6 +1,5 @@
 package dev.drawethree.spigothibernatedemo.controller;
 
-import dev.drawethree.spigothibernatedemo.SpigotHibernateDemo;
 import dev.drawethree.spigothibernatedemo.model.PlayerData;
 import org.bukkit.entity.Player;
 import org.hibernate.Session;
@@ -16,15 +15,12 @@ class PlayerDataControllerTest {
 
 	private static final UUID playerUUID = UUID.randomUUID();
 
-	private static SpigotHibernateDemo mockPlugin;
 	private static PlayerDataController playerDataController;
 	private static Player mockPlayer;
 	private static SessionFactory sessionFactory;
 
 	@BeforeAll
 	static void setUp() {
-		mockPlugin = Mockito.mock(SpigotHibernateDemo.class);
-		playerDataController = new PlayerDataController(mockPlugin);
 		mockPlayer = Mockito.mock(Player.class);
 
 		sessionFactory = new Configuration()
@@ -32,8 +28,9 @@ class PlayerDataControllerTest {
 				.addAnnotatedClass(PlayerData.class)
 				.buildSessionFactory();
 
+		playerDataController = new PlayerDataController(sessionFactory);
+
 		Mockito.when(mockPlayer.getUniqueId()).thenReturn(playerUUID);
-		Mockito.when(mockPlugin.getSessionFactory()).thenReturn(sessionFactory);
 	}
 
 	@BeforeEach

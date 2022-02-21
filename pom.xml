@@ -19,6 +19,7 @@
     <url>www.drawethree.dev</url>
 
     <build>
+        <defaultGoal>clean install</defaultGoal>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -41,6 +42,9 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <minimizeJar>true</minimizeJar>
+                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
